@@ -31,9 +31,7 @@ public class Exercise1Test extends PetDomainForKata
     @Test
     public void getFirstNamesOfAllPeople()
     {
-        // Replace null, with a transformation method on MutableList.
-        MutableList<String> firstNames = null; // this.people...
-
+        MutableList<String> firstNames = this.people.collect(Person::getFirstName);
         MutableList<String> expectedFirstNames = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
         Assert.assertEquals(expectedFirstNames, firstNames);
     }
