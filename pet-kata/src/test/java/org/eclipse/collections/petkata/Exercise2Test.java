@@ -110,8 +110,7 @@ public class Exercise2Test extends PetDomainForKata
         boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
         Assert.assertTrue(peopleHaveCatsLambda);
 
-        //use method reference, NOT lambdas, to solve the problem below
-        boolean peopleHaveCatsMethodRef = false;
+        boolean peopleHaveCatsMethodRef = people.anySatisfyWith(Person::hasPet, PetType.CAT);
         Assert.assertTrue(peopleHaveCatsMethodRef);
     }
 
