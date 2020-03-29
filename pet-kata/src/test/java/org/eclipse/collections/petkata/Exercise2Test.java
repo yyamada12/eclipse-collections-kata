@@ -73,7 +73,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void findMarySmith()
     {
-        Person result = null;
+        Person result = people.detectWith(Person::named, "Mary Smith");
         Assert.assertEquals("Mary", result.getFirstName());
         Assert.assertEquals("Smith", result.getLastName());
     }
