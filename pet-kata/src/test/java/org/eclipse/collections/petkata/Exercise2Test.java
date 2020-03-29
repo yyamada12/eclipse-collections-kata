@@ -81,7 +81,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void getPeopleWithPets()
     {
-        MutableList<Person> petPeople = this.people; // replace with only the pet owners
+        MutableList<Person> petPeople = this.people.select(Person::isPetPerson);
         Verify.assertSize(7, petPeople);
     }
 
