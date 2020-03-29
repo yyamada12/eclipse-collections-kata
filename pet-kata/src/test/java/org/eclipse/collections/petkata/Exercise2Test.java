@@ -59,7 +59,7 @@ public class Exercise2Test extends PetDomainForKata
     public void doAllPeopleHavePets()
     {
         Predicate<Person> predicate = person -> person.isPetPerson();
-        boolean result = true; //replace with a method call send to this.people that checks if all people have pets
+        boolean result = people.allSatisfy(predicate);
         Assert.assertFalse(result);
     }
 
