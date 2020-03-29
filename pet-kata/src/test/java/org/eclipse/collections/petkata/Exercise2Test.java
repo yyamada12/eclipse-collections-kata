@@ -43,6 +43,7 @@ import org.junit.Test;
  * {@link MutableList#allSatisfyWith(Predicate2, Object)}<br>
  * {@link MutableList#noneSatisfyWith(Predicate2, Object)}<br>
  * <br>
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/pet-kata/#/4">Exercise 2 Slides</a>
  */
 public class Exercise2Test extends PetDomainForKata
@@ -50,7 +51,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void doAnyPeopleHaveCats()
     {
-        Predicate<Person> predicate = null; //replace null with a Predicate lambda which checks for PetType.CAT
+        Predicate<Person> predicate = person -> person.hasPet(PetType.CAT);
         Assert.assertTrue(this.people.anySatisfy(predicate));
     }
 
