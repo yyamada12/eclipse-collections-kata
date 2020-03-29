@@ -66,7 +66,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void howManyPeopleHaveCats()
     {
-        int count = 0;
+        int count = people.countWith(Person::hasPet, PetType.CAT);
         Assert.assertEquals(2, count);
     }
 
