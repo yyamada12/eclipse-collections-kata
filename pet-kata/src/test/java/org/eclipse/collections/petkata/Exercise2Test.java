@@ -98,7 +98,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void getFirstNamesOfAllPeople()
     {
-        MutableList<String> firstNames = null;  // Transform this.people into a list of first names
+        MutableList<String> firstNames = people.collect(Person::getFirstName);
         Assert.assertEquals(
                 Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John"),
                 firstNames);
