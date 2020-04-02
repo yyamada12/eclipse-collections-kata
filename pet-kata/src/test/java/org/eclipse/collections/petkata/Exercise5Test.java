@@ -19,7 +19,7 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Exercise5Test extends PetDomainForKat
+public class Exercise5Test extends PetDomainForKata
 {
     @Test
     public void partitionPetAndNonPetPeople()
