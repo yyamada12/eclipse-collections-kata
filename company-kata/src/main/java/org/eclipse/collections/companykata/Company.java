@@ -13,6 +13,7 @@ package org.eclipse.collections.companykata;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
 
@@ -70,6 +71,7 @@ public class Company
 
     /**
      * Simplify after refactoring to use a MutableList&lt;Supplier&gt;.
+     *
      * @param supplier
      */
     public void addSupplier(Supplier supplier)
@@ -96,7 +98,6 @@ public class Company
      */
     public Customer getCustomerNamed(String name)
     {
-        Assert.fail("Implement this method as part of Exercise 2");
-        return null;
+        return this.customers.detect(Predicates.attributeEqual(Customer::getName, name));
     }
 }
