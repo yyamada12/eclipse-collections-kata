@@ -35,8 +35,6 @@ public class Exercise3Test extends CompanyDomainForKata
     @Test
     public void improveGetOrders()
     {
-        // Delete this line - it's a reminder
-        Assert.fail("Improve getOrders() without breaking this test");
         Verify.assertSize(5, this.company.getOrders());
     }
 
@@ -46,8 +44,8 @@ public class Exercise3Test extends CompanyDomainForKata
     @Test
     public void findItemNames()
     {
-        MutableList<LineItem> allOrderedLineItems = null;
-        MutableSet<String> actualItemNames = null;
+        MutableList<LineItem> allOrderedLineItems = this.company.getOrders().flatCollect(Order::getLineItems);
+        MutableSet<String> actualItemNames = allOrderedLineItems.collect(LineItem::getName).toSet();
 
         Verify.assertInstanceOf(MutableSet.class, actualItemNames);
         Verify.assertInstanceOf(String.class, actualItemNames.getFirst());
@@ -61,7 +59,7 @@ public class Exercise3Test extends CompanyDomainForKata
     @Test
     public void findCustomerNames()
     {
-        MutableList<String> names = null;
+        MutableList<String> names = this.company.getCustomers().collect(Customer::getName);
 
         MutableList<String> expectedNames = Lists.mutable.with("Fred", "Mary", "Bill");
         Assert.assertEquals(expectedNames, names);
