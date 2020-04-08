@@ -10,8 +10,6 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.List;
-
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.api.block.predicate.Predicate;
@@ -28,7 +26,7 @@ import org.junit.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
- *
+ * <p>
  * {@link MutableList#collect(Function)}
  * {@link MutableList#collectDouble(DoubleFunction)}
  * {@link MutableList#select(Predicate)}
@@ -45,8 +43,8 @@ public class Exercise5Test extends CompanyDomainForKata
     @Test
     public void filterOrderValues()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableList<Double> orderValues = null;
+        MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
+        MutableList<Double> orderValues = orders.collect(Order::getValue);
         MutableList<Double> filtered = orderValues.select(Predicates.greaterThan(1.5));
 
         Assert.assertEquals(Lists.mutable.with(372.5, 1.75), filtered);
@@ -61,8 +59,8 @@ public class Exercise5Test extends CompanyDomainForKata
     @Test
     public void filterOrderValuesUsingPrimitives()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableDoubleList orderValues = null;
+        MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
+        MutableDoubleList orderValues = orders.collectDouble(Order::getValue);
         MutableDoubleList filtered = orderValues.select(DoublePredicates.greaterThan(1.5));
 
         Assert.assertEquals(DoubleLists.mutable.with(372.5, 1.75), filtered);
@@ -76,8 +74,8 @@ public class Exercise5Test extends CompanyDomainForKata
     @Test
     public void filterOrders()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableList<Order> filtered = null;
+        MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
+        MutableList<Order> filtered = orders.select(order -> 2.0 < order.getValue());
 
         Assert.assertEquals(Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders())), filtered);
         Verify.assertInstanceOf(MutableList.class, this.company.getMostRecentCustomer().getOrders());
