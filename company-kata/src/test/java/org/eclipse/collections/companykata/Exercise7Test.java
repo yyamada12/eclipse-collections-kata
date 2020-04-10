@@ -16,6 +16,7 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.multimap.MutableMultimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.factory.Lists;
+import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Assert;
@@ -23,7 +24,7 @@ import org.junit.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
- *
+ * <p>
  * {@link MutableList#groupBy(Function)}
  * {@link MutableList#groupByEach(Function)}
  * {@link ArrayIterate#groupByEach(Object[], Function)}
@@ -40,7 +41,7 @@ public class Exercise7Test extends CompanyDomainForKata
     @Test
     public void customersByCity()
     {
-        MutableListMultimap<String, Customer> multimap = null;
+        MutableListMultimap<String, Customer> multimap = this.company.getCustomers().groupBy(Customer::getCity);
 
         Assert.assertEquals(Lists.mutable.with(this.company.getCustomerNamed("Mary")), multimap.get("Liphook"));
         Assert.assertEquals(
@@ -57,17 +58,8 @@ public class Exercise7Test extends CompanyDomainForKata
     @Test
     public void itemsBySuppliers()
     {
-        MutableMultimap<String, Supplier> itemsToSuppliers = null;
+        MutableMultimap<String, Supplier> itemsToSuppliers = ArrayIterate.groupByEach(this.company.getSuppliers(), supplier -> ArrayAdapter.adapt(supplier.getItemNames()));
 
         Verify.assertIterableSize("should be 2 suppliers for sofa", 2, itemsToSuppliers.get("sofa"));
-    }
-
-    /**
-     * Delete this whole method when you're done. It's just a reminder.
-     */
-    @Test
-    public void reminder()
-    {
-        Assert.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");
     }
 }

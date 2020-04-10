@@ -10,15 +10,16 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
-import org.eclipse.collections.impl.block.function.AddFunction;
-import org.eclipse.collections.impl.collection.mutable.CollectionAdapter;
-import org.eclipse.collections.impl.utility.Iterate;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.eclipse.collections.api.bag.MutableBag;
+import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
+import org.eclipse.collections.impl.block.function.AddFunction;
+import org.eclipse.collections.impl.collection.mutable.CollectionAdapter;
+import org.eclipse.collections.impl.factory.Bags;
+import org.eclipse.collections.impl.utility.Iterate;
 
 /**
  * Has a number, a {@link Customer}, a {@link List} of {@link LineItem}s, and a boolean that states whether or not the order
@@ -29,7 +30,7 @@ public class Order
     private static final AtomicInteger NEXT_ORDER_NUMBER = new AtomicInteger(1);
 
     private final int orderNumber;
-    private final List<LineItem> lineItems = new ArrayList<>();
+    private final MutableBag<LineItem> lineItems = Bags.mutable.empty();
     private boolean isDelivered;
 
     public Order()
@@ -57,7 +58,12 @@ public class Order
         this.lineItems.add(aLineItem);
     }
 
-    public List<LineItem> getLineItems()
+    public void addLineItems(LineItem aLineItem, int num)
+    {
+        this.lineItems.addOccurrences(aLineItem, num);
+    }
+
+    public MutableBag<LineItem> getLineItems()
     {
         return this.lineItems;
     }
